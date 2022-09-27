@@ -41,6 +41,7 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
+    puts "project is being destroyed"
     @project.destroy
     redirect_to projects_url, notice: "Project was successfully destroyed."
   end
