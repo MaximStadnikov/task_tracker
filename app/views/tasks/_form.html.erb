@@ -1,32 +1,21 @@
 <%= form_with(model: [@project, task]) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+    </div>
+    <div>
+        <%= form.label :deadline_at %>
+        <input type="date" name="task[deadline_at]" id="task[deadline_at]" value=<%= Time.now + 7.days %> />
+    </div>
+    
     <%= form.submit %>
-  </div>
 <% end %>

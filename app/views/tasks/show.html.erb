@@ -1,29 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @task.name %></h2>
+<p><%= @task.title %></p>
+<p><%= @task.description %></p>
+<p>Deadline: <%= @task.deadline_at %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
-
-<p>
-  <strong>Deadline:</strong>
-  <%= @task.deadline %>
-</p>
-
-<p>
-  <strong>Date of start:</strong>
-  <%= @task.date_of_start %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div>
+    <%= link_to 'back', project_tasks_path %>
+    <%= link_to 'Edit', edit_project_task_path([@project, @task])%>
+    <%= link_to 'Destroy',url_for([@project, @task]), method: :destroy, data: { confirm: 'Are you sure?' } %>
+       
+</div>
