@@ -4,9 +4,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-    		    .page(params[:page])
-                    .order(params[:sort])
-                    .per(2)
+                 .page(params[:page])
+                 .order(params[:sort])
+                 .per(2)
   end
 
   def new
