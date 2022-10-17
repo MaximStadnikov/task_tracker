@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'secions/new'
+  get 'secions/create'
+  get 'secion/new'
+  get 'secion/create'
+  get 'new/create'
   root to: "projects#index"
 
   resources :projects do
