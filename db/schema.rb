@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_09_27_132936) do
     t.string "name"
     t.string "title"
     t.string "description"
-    t.datetime "deadline_at", default: "2022-10-04 18:08:03"
+    t.datetime "deadline_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

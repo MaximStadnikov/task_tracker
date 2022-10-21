@@ -4,7 +4,7 @@
 <p>Deadline: <%= @task.deadline_at %></p>
 
 <div>
-    <%= link_to 'back', project_tasks_path %>
+    <%= link_to 'back', project_tasks_path(@project) %>
     <%= link_to 'Edit', edit_project_task_path([@project, @task])%>
     <%= link_to 'Destroy',url_for([@project, @task]), method: :destroy, data: { confirm: 'Are you sure?' } %>
        
