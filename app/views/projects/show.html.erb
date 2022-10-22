@@ -14,5 +14,5 @@
 <%= link_to 'Back', projects_path %>
 
 
-<%= link_to 'tasks', [@project, @project.tasks.build] %>
+<%= link_to 'tasks', project_tasks_path(@project) %>
 

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_project
+  before_action :set_project, only: %i[index new show create destroy edit update]
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
@@ -20,11 +20,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = @project.tasks.find(:id)
+    @task = @project.tasks.find(params[:id])
     
-    if @task.destroy
-      redirect_to project_tasks_path, notice: "Project was successfully destroyed."
-    end
+    @task.destroy
+    redirect_to project_tasks_path, notice: "Project was successfully destroyed."
   end
 
   def edit
