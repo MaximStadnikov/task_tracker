@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to @project, notice: "Project was successfully destroyed."
+    redirect_to project_tasks_path(@project), notice: "Project was successfully destroyed."
   end
 
   def edit
