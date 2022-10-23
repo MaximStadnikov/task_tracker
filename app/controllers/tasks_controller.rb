@@ -11,17 +11,23 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = @project.tasks.find(params[:id]) 
   end 
 
   def create
-    @task = @project.tasks.create(task_params)
-    redirect_to [@project, @task]
+    @task = @project.tasks.build(task_params)
+    @task.deadline_at = 7.days.after
+
+    if @task.save 
+      flash[:notice] = "Task craeted!"
+      redirect_to [@project, @task]  
+   else
+      render :new
+   end
   end
 
   def destroy
     @task.destroy
-    redirect_to project_tasks_path(@project), notice: "Project was successfully destroyed."
+    redirect_to @project, notice: "Project was successfully destroyed."
   end
 
   def edit
@@ -39,11 +45,11 @@ class TasksController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.find_by!(id: params[:project_id])
   end
   
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.find_by!(id: params[:id])
   end
 
   def task_params
