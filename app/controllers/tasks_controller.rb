@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = @project.tasks.all
+    @tasks = @project.tasks
   end
 
   def new
@@ -20,10 +20,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = @project.tasks.find(params[:id])
-    
     @task.destroy
-    redirect_to project_tasks_path, notice: "Project was successfully destroyed."
+    redirect_to project_tasks_path(@project), notice: "Project was successfully destroyed."
   end
 
   def edit
@@ -39,10 +37,6 @@ class TasksController < ApplicationController
   end
   
   private
-
-  def task_params
-    params.require(:task).premit(:title, :name, :description)
-  end
 
   def set_project
     @project = Project.find(params[:project_id])
