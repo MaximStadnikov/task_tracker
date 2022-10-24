@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <%=
+      if current_user
+        render "layouts/nav-user"
+      else
+        render "layouts/nav"
+      end
+    %>
     <% flash.each do |type, msg| %>
       <div class="flash-<%=type%>">
         <p><%=msg%></p>

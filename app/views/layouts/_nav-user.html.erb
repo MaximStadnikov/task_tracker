@@ -1,0 +1,4 @@
+<h2> Wellcome <%= current_user.first_name %>! </h2>
+<ul>
+    <li> <%= link_to "Sign Out", sessions_path, method: :delete %> </li>
+</ul>
