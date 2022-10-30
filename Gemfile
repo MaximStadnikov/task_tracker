@@ -11,6 +11,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.7"
 gem "sass-rails", ">= 6"
+gem "sidekiq", "<7"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
 
@@ -28,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "letter_opener"
   gem "listen", "~> 3.3"
   gem "rack-mini-profiler", "~> 2.0"
   gem "spring"
