@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TaskTracker</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TaskTracker</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+      ul.hr {
+          margin: 0; /* Обнуляем значение отступов */
+          padding: 4px; /* Значение полей */
+      }
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      ul.hr li {
+          display: inline; /* Отображать как строчный элемент */
+          margin-right: 5px; /* Отступ слева */
+          border: 1px solid #000; /* Рамка вокруг текста */
+          padding: 3px; /* Поля вокруг текста */
+      }
+  </style>
+</head>
 
-  <body>
-    <% flash.each do |type, msg| %>
-      <div class="flash-<%=type%>">
-        <p><%=msg%></p>
-      </div>
-    <%end%>
-    <%= yield %>
-  </body>
+
+<body>
+<header>
+  <ul class="hr">
+    <li><%= link_to 'Home', projects_path %></li>
+    <% p logged_in? %>
+    <% if logged_in? %>
+      <li><%= link_to 'Log out', sessions_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <li>
+        <strong><%= check_for_null_str(current_user['first_name']) || check_for_null_str(current_user['last_name']) || current_user['email'] %></strong>
+      </li>
+    <% else %>
+      <li><%= link_to 'Sign in', new_user_path %></li>
+      <li><%= link_to 'Log in', new_sessions_path %></li>
+    <% end %>
+  </ul>
+</header>
+
+<% flash.each do |type, msg| %>
+  <div class="flash-<%= type %>">
+    <p><%= msg %></p>
+  </div>
+<% end %>
+<%= yield %>
+</body>
 </html>
