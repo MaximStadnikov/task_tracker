@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-<<<<<<< HEAD
-=======
   extend Enumerize
 
   ROLES = %i[member admin superadmin].freeze
@@ -13,5 +11,4 @@ class User < ApplicationRecord
   enumerize :role, in: ROLES, scope: :shallow, predicates: true
 
   validates :email, presence: true, uniqueness: true
->>>>>>> upstream/master
 end
