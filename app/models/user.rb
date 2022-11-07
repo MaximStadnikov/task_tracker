@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-<<<<<<< HEAD
   extend Enumerize
 
   ROLES = %i[member admin superadmin].freeze
@@ -12,6 +11,4 @@ class User < ApplicationRecord
   enumerize :role, in: ROLES, scope: :shallow, predicates: true
 
   validates :email, presence: true, uniqueness: true
-=======
->>>>>>> 870e194 (trying to update fork)
 end
