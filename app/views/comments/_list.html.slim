@@ -1,0 +1,21 @@
+h1 Comments
+
+table
+    tbody
+    - comments.each do |comment|
+       .jumbotron.bg-light.p-3
+
+            h3
+                | User#
+                = comment.user_id
+            .lead
+                = comment.content
+            .lead
+                = comment.created_at
+
+            .btn-group
+                = link_to 'Edit', edit_project_task_comment_path(comment.task.project, comment.task, comment),
+                    class: "btn btn-primary"
+                = link_to 'Destroy', project_task_comment_path(comment.task.project, comment.task, comment),
+                    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+            hr

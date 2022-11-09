@@ -1,0 +1,12 @@
+h1.text-center Your profile info
+
+.card
+  .card-body
+    strong First Name:
+    .card-text = current_user.first_name
+
+    strong Last Name:
+    .card-text = current_user.last_name
+
+    strong Email:
+    .card-text = current_user.email

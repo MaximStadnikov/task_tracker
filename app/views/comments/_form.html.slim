@@ -1,0 +1,17 @@
+= form_with(model: comment, url: [project, task, comment]) do |form|
+  - if comment.errors.any?
+    #error_explanation
+      h2
+        = pluralize(comment.errors.count, "error")
+        prohibited this comment from being saved:
+
+      ul
+        - comment.errors.each do |error|
+          li
+            = error.full_message
+
+  .form-group.w-50.m-auto.mt-4
+    .field
+    = form.label :content, value: "Comment"
+    = form.text_field :content, class: "form-control"
+    = form.submit class: "btn btn-primary mt-2"
