@@ -65,6 +65,6 @@ class TasksController < ApplicationController
   end
 
   def create_task
-    @create_task ||= Tasks::Create.call(task_params: task_params.merge({project: @project}), user: current_user)
+    @create_task ||= Tasks::Create.call(task_params: task_params.merge({ project: @project }), user: current_user)
   end
 end
