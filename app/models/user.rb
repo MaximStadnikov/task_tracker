@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
   has_many :project_memberships, dependent: :restrict_with_error
   has_many :projects, through: :project_memberships
-
+  has_many :comments
+  
   enumerize :role, in: ROLES, scope: :shallow, predicates: true
 
   validates :email, presence: true, uniqueness: true

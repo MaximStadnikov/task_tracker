@@ -1,0 +1,8 @@
+<h1>Comments</h1>
+
+<% @comments.each do |comment| %>
+    <h1> User #<%= comment.user.first_name %> </h1>
+    <p> <%= comment.content %> </p>
+    <%= link_to "edit", edit_project_task_comment_path(@project, @task, comment) %>
+    <%= link_to "delete", project_task_comment_path(@project, @task, comment), method: :delete %>
+<% end %>

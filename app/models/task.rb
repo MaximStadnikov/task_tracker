@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :project
-
+  has_many :comments
   validates :title, presence: true
   validates :deadline_at, presence: true
   validate :deadline_possibility
