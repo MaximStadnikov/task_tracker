@@ -25,3 +25,16 @@
 
 <%= link_to 'Edit', edit_project_task_path(@task.project, @task) %> |
 <%= link_to 'Back', project_tasks_path(@task.project) %>
+
+
+<h1> Comments: </h1>
+
+<% @task.comments.each do |comment| %>
+  <h4> User #<%= comment.user.first_name %> </h4>
+  <p> <%= comment.content %> </p>
+  <%= link_to "edit", edit_project_task_comment_path(@task.project, @task, comment) %>
+  <%= link_to "delete", project_task_comment_path(@task.project, @task, comment), method: :delete %> 
+  <hr>
+<% end %>
+
+<%= link_to 'New Comment', new_project_task_comment_path(@task.project, @task) %>
