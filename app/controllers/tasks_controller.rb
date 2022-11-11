@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    destroy_task
     redirect_to @project, notice: "Task was successfully destroyed."
   end
 
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
+    if update_task.success?
       redirect_to project_task_path(@project, @task), notice: "Task was successfully updated."
     else
       flash.now[:notice] = "Something went wrong. Try again."
@@ -66,5 +66,13 @@ class TasksController < ApplicationController
 
   def create_task
     @create_task ||= Tasks::Create.call(task_params: task_params.merge({ project: @project }), user: current_user)
+  end
+
+  def update_task
+    @update_task ||= Tasks::Edit.call(task_params: task_params, task: @task, user: current_user)
+  end
+
+  def destroy_task
+    @destroy_task ||= Tasks::Delete.call(task: @task, user: current_user)
   end
 end
