@@ -2,11 +2,14 @@ module Tasks
   class Destroy
     include Interactor
 
-    delegate :task, to: :context
+    delegate :task, :project, :user, to: :context
 
     def call
-       context.fail!(error: "something went wrong while deleting") unless destroy_task
+      context.members = project.users
+      context.fail!(error: "something went wrong while deleting") unless destroy_task
     end
+
+    private
 
     def destroy_task
         task.destroy

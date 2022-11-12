@@ -73,6 +73,6 @@ class TasksController < ApplicationController
   end
 
   def destroy_task
-    @destroy_task ||= Tasks::Delete.call(task: @task, user: current_user)
+    @destroy_task ||= Tasks::Delete.call(task: @task, user: current_user, project: @project)
   end
 end
