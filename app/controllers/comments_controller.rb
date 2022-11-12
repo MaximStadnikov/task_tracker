@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
   end
 
   private
-  
+
   def create_comment
     @create_comment = Comments::Create.call(comment_params: comment_params.merge({ task: @task, user: current_user }))
   end
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
 
   def update_comment
     @update_comment = Comments::Update.call(comment_params: comment_params, comment: @comment)
-  end 
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])

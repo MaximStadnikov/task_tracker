@@ -4,6 +4,5 @@ module Tasks
 
     organize Tasks::Update,
              Tasks::Update::SendNotification
-
   end
 end

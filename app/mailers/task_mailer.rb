@@ -7,23 +7,26 @@ class TaskMailer < ApplicationMailer
   end
 
   # mailers for delete
-  def task_deleted(task, user)
-    set_email(task, user)
+  def task_deleted(task, user, project)
+    @members = project.users
+    @task = task
+    @message = ""
+
+    @members.each do |member|
+      @message = if ownership(member).role == :owner && member == user
+                   "You deleted your task, named '#{@task.title}'"
+                 elsif member == user
+                   "You deleted a task, named '#{@task.title}'"
+                 elsif ownership(member).role == :owner
+                   "A employee of you deleted a task, named '#{@task.title}'"
+                 else
+                   "Someone of you deleted a task, named '#{@task.title}'"
+                 end
+      mail(to: member)
+    end
   end
 
-  def task_deleted_by_owner(task, user)
-    set_email(task, user)
-  end
-
-  def task_deleted_by_member(task, user)
-    set_email(task, user)
-  end
-
-  def task_deleted_by_someone(task, user)
-    set_email(task, user)
-  end
-
-  #mailers for update
+  # mailers for update
   def task_updated(task, user)
     @task = task
     mail(to: user.emai)
@@ -31,9 +34,7 @@ class TaskMailer < ApplicationMailer
 
   private
 
-  def set_email(task, user)
-    @task = task
-    mail(to: user.email)
+  def ownership(action_user)
+    @ownership = ProjectMembership.find_by(user: action_user, project: project)
   end
-
 end

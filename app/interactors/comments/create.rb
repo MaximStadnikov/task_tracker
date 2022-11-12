@@ -1,20 +1,19 @@
 module Comments
   class Create
-    include Interactor 
-    
+    include Interactor
+
     delegate :user, :comment_params, to: :context
 
     def call
-        context.comment = comment
+      context.comment = comment
 
-        context.fail!(error: "The comment did not save correctly") unless comment.save
+      context.fail!(error: "The comment did not save correctly") unless comment.save
     end
 
-    private 
+    private
 
     def comment
-        @comment = Comment.new(comment_params) 
+      @comment = Comment.new(comment_params)
     end
-
-end
+  end
 end
