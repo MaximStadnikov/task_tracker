@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_project
   before_action :set_task
   before_action :set_comment, only: %i[edit update destroy]
-  before_action ->{ authorize! @task}
+  before_action -> { authorize! @task }
 
   def new
     @comment = Comment.new
@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params.merge(user: current_user, task: @task))
-    
-    if @comment.save 
+
+    if @comment.save
       flash[:notice] = "Comment created!"
       redirect_to project_task_path(@project, @task)
     end
@@ -35,10 +35,10 @@ class CommentsController < ApplicationController
     redirect_to project_task_path(@project, @task)
   end
 
-  private 
+  private
 
   def set_comment
-    @comment = Comment.find(params[:id]) 
+    @comment = Comment.find(params[:id])
   end
 
   def set_task

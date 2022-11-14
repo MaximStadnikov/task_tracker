@@ -1,0 +1,7 @@
+<%= form_with model: [project, task, comment] do |form| %>
+    <div>
+        <%= form.label :content %>
+        <%= form.text_field :content %>
+    </div>
+    <%= form.submit "comment" %>
+<% end %>

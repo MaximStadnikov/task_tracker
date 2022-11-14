@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
-    authorize :user, allow_nil: true
-    
-    def new?
-        create?
-    end
+  authorize :user, allow_nil: true
 
-    def create?
-        user.blank?
-    end
+  def new?
+    create?
+  end
+
+  def create?
+    user.blank?
+  end
 end

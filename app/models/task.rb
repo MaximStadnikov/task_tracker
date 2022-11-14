@@ -1,4 +1,10 @@
 class Task < ApplicationRecord
+  extend Enumerize
+
+  STATES = %i[not_started started finished].freeze
+
+  enumerize :state, in: STATES
+
   belongs_to :project
   has_many :comments, dependent: :destroy
   validates :title, presence: true
