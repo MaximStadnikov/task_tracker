@@ -1,17 +1,8 @@
 module Tasks
   class Destroy
-    include Interactor
+    include Interactor::Organizer
 
-    delegate :task, :project, :user, to: :context
-
-    def call
-      context.fail!(error: "something went wrong while deleting") unless destroy_task
-    end
-
-    private
-
-    def destroy_task
-      task.destroy
-    end
+    organize Tasks::Destroy::Execute,
+             Tasks::Destroy::SendNotifications
   end
 end

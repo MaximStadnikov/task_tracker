@@ -1,6 +1,6 @@
 module Tasks
   class Destroy
-    class SendNotification
+    class SendNotifications
       include Interactor
 
       delegate :task, :user, :project, to: :context

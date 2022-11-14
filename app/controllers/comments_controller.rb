@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
+    destroy_comment
     redirect_to project_task_path(@project, @task), notice: "Comment was successfully destroyed."
   end
 

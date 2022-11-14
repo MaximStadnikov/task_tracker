@@ -1,6 +1,6 @@
 module Tasks
   class Update
-    class SendNotification
+    class SendNotifications
       include Interactor
 
       delegate :task, :user, to: :context

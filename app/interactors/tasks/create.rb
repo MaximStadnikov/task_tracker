@@ -3,7 +3,6 @@ module Tasks
     include Interactor::Organizer
 
     organize Tasks::Save,
-             Tasks::Create::SendNotification,
-             Tasks::Create::NotifyAllMembers
+             Tasks::Create::SendNotifications
   end
 end

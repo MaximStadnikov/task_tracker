@@ -3,11 +3,9 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project
   before_action -> { authorize! @task }, only: %i[show edit update destroy]
+  before_action -> { authorize! Task.new(project: @project) }, only: %i[index create]
 
   def index
-    @task = Task.new(project: @project)
-    authorize! @task
-
     @tasks = @project.tasks
   end
 
@@ -18,7 +16,6 @@ class TasksController < ApplicationController
 
   def create
     @task = create_task.task
-    authorize! @task
 
     if create_task.success?
       redirect_to project_task_path(@project, @task), notice: "Task was successfully created!"
@@ -69,10 +66,10 @@ class TasksController < ApplicationController
   end
 
   def update_task
-    @update_task ||= Tasks::Edit.call(task_params: task_params, task: @task, user: current_user)
+    @update_task ||= Tasks::Update.call(task_params: task_params, task: @task, user: current_user)
   end
 
   def destroy_task
-    @destroy_task ||= Tasks::Delete.call(task: @task, user: current_user, project: @project)
+    @destroy_task ||= Tasks::Destroy.call(task: @task, user: current_user, project: @project)
   end
 end
