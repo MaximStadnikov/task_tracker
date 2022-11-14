@@ -1,19 +1,22 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project, only: %i[new index create destroy]
+  before_action ->{authorize! @task}, only: %i[show edit update destroy]
 
   def index
     @tasks = @project.tasks
+    authorize! Task
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(project: @project)
+    authorize! @task
   end
 
   def create
     @task = Task.new(task_params)
     @task.deadline_at = 7.days.after
-
+    authorize! @task
     if @task.save
       redirect_to project_task_url(@project, @task), notice: "Task was successfully created!"
     else

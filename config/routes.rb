@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tasks do
-      resources :comments
+      resources :comments, except: %i[index show]
     end
   end
 

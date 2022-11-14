@@ -1,26 +1,20 @@
 class CommentsController < ApplicationController
-  before_action :set_project, only: %i[index new create edit update destroy] 
-  before_action :set_task, only: %i[index show edit destroy new create update] 
-  before_action :set_comment, only: %i[show show edit update destroy]
-
-  def index
-    @comments = @task.comments
-  end
-
-  def show
-  end
+  before_action :set_project
+  before_action :set_task
+  before_action :set_comment, only: %i[edit update destroy]
+  before_action ->{ authorize! @task}
 
   def new
     @comment = Comment.new
   end
 
   def create
-    @comment = Comment.new(comment_params.merge(user_id: current_user.id, task_id: @task.id))
-
+    @comment = Comment.new(comment_params.merge(user: current_user, task: @task))
+    
     if @comment.save 
-      redirect_to project_task_comments_path(@project, @task)
+      flash[:notice] = "Comment created!"
+      redirect_to project_task_path(@project, @task)
     end
-
   end
 
   def edit
@@ -28,7 +22,8 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to [@project, @task, @comment]
+      flash[:notice] = "Comment updated!"
+      redirect_to project_task_path(@project, @task)
     else
       render :edit
     end
@@ -37,7 +32,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     flash[:notice] = "Your comment has been deleted"
-    redirect_to project_task_comments_path(@project, @task)
+    redirect_to project_task_path(@project, @task)
   end
 
   private 
@@ -57,5 +52,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
-
 end
