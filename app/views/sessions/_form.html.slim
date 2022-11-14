@@ -2,8 +2,8 @@
   - if user.errors.any?
     .alert.label-list
       h2
-        => pluralize(user.errors.count, "error")
-        |  prohibited this user from being saved:
+        = pluralize(user.errors.count, "error")
+        |prohibited this user from being saved:
     - user.errors.each do |error|
       .errors
         .alert.alert-danger
