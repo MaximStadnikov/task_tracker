@@ -14,5 +14,6 @@ module Tasks
       def destroy_task
         task.destroy
       end
+    end
   end
 end

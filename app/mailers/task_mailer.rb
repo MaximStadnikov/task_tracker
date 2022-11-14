@@ -10,7 +10,6 @@ class TaskMailer < ApplicationMailer
   def task_deleted(task, user, project)
     @members = project.users
     @task = task
-    @message = ""
 
     @members.each do |member|
       @message = if ownership(member).role == :owner && member == user
