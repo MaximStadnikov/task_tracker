@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
+    if update_project.success?
       redirect_to @project, notice: "Project was successfully updated."
     else
       render :edit
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
-    @project.destroy
+    destroy_project
     redirect_to projects_path, notice: "Project was successfully destroyed."
   end
 
@@ -56,6 +56,14 @@ class ProjectsController < ApplicationController
   def create_project
     @create_project ||=
       Projects::Create.call(project_params: project_params, user: current_user)
+  end
+
+  def update_project
+    @update_project = Projects::Update.call(project_params: project_params, project: @project, user: current_user)
+  end
+
+  def destroy_project
+    Projects::Destroy.call(project: @project, user: current_user)
   end
 
   # Use callbacks to share common setup or constraints between actions.
