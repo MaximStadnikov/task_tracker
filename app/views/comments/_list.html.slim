@@ -1,0 +1,17 @@
+.container-md
+  .card
+    div.p-l-3.p-3
+      h1 Comments
+    - comments.each do |comment|
+      .card-body
+        strong.card-text = comment.content
+        p.card-text
+          ' creator ~
+          = comment.user.email
+        p.card-text = comment.created_at
+
+      div.p-l-3.p-2
+        = link_to 'Edit', edit_project_task_comment_path(comment.task.project, comment.task, comment),
+                class: "btn btn-success ms-1"
+        = link_to 'Destroy', project_task_comment_path(comment.task.project, comment.task, comment),
+                method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ms-1'

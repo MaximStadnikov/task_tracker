@@ -1,0 +1,20 @@
+= form_with(model: comment, url: [project, task, comment]) do |form|
+  - if comment.errors.any?
+    #error_explanation.no
+      h2
+        => pluralize(comment.errors.count, "error")
+        | prohibited this comment from being saved:
+
+      ul
+        - comment.errors.each do |error|
+          li
+            = error.full_message
+  .container-md
+    .card
+      .card-body
+        h1 Comment Create
+        .mb-3
+          = form.text_field :content, class: 'form-control'
+
+        .mb-3
+          = form.submit 'Create', class: "btn btn-primary"
