@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Projects::Save do
-  describe "#call" do
+  describe ".call" do
     let(:interactor) { described_class.new(project_params: params) }
 
     context "when params are valid" do

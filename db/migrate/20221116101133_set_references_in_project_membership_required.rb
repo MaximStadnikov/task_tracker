@@ -1,6 +1,6 @@
 class SetReferencesInProjectMembershipRequired < ActiveRecord::Migration[6.1]
   def change
-    change_column :project_memberships, :project_id, :bigint, null: false
-    change_column :project_memberships, :user_id, :bigint, null: false
+    change_column_null :project_memberships, :project_id, false
+    change_column_null :project_memberships, :user_id, false
   end
 end
