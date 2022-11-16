@@ -1,5 +1,5 @@
 class CommentPolicy < ApplicationPolicy
-  authorize :user, allow_nil: true
+  authorize :user
 
   def new?
     create?

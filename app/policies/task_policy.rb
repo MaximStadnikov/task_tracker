@@ -1,5 +1,5 @@
 class TaskPolicy < ApplicationPolicy
-  authorize :user, optional: true
+  authorize :user
 
   def index?
     member?
