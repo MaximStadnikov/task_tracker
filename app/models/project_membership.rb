@@ -7,6 +7,4 @@ class ProjectMembership < ApplicationRecord
   belongs_to :user
 
   enumerize :role, in: ROLES, predicates: true
-
-  validates :user, :project presence: true
 end

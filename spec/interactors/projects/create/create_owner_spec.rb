@@ -18,8 +18,9 @@ describe Projects::Create::CreateOwner do
       let(:expected_error_message) { "Invalid data" }
 
       it "fails" do
-        expect { interactor.run }.to change(Project, :count).by(1)
+        interactor.run
 
+        expect(Project.exists?(project.id)).to be false
         expect(interactor.context.error).to eq(expected_error_message)
       end
     end
