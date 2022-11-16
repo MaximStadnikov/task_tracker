@@ -6,7 +6,11 @@ module Projects
       delegate :project, :user, to: :context
 
       def call
+        p "HELLO THERE"
+        p Project.count
         raise_error unless owner_membership.save
+        p Project.count
+        p context.error
       end
 
       private
