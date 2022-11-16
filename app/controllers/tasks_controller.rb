@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
-  before_action :set_project, only: %i[new index create destroy]
+  before_action :set_project
   before_action -> { authorize! @task }, only: %i[show edit update destroy]
 
   def index
@@ -31,6 +31,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @task.comments
   end
 
   def edit

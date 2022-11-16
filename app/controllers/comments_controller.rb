@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   before_action -> { authorize! @task }
 
   def new
-    @comment = Comment.new
   end
 
   def create
@@ -14,6 +13,8 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Comment created!"
       redirect_to project_task_path(@project, @task)
+    else
+      render :new
     end
   end
 

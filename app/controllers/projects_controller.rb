@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
   before_action -> { authorize! Project }, only: %i[index show new create]
+  before_action -> { authorize! @project }, only: %i[edit update]
 
   # GET /projects
   def index
@@ -21,7 +22,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    authorize! @project
   end
 
   # POST /projects
@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    authorize! @project
     if @project.update(project_params)
       redirect_to @project, notice: "Project was successfully updated."
     else
