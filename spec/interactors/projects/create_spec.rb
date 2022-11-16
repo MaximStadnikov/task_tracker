@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe Projects::Create do
   describe ".organized" do
-
     let(:expected_interactors) do
       [
         Projects::Save,
