@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Projects::Create do
-  describe '.organized' do
+  describe ".organized" do
     # subject { described_class.organized }
 
     let(:expected_interactors) do

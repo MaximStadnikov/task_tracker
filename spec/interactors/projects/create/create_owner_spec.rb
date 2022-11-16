@@ -1,17 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Projects::Create::CreateOwner do
-  describe '#call' do
+  describe "#call" do
     let(:interactor) { described_class.new(project: project, user: user) }
 
-    context 'when params are valid' do
+    context "when params are valid" do
       let(:project) { create :project }
       let(:user) { create :user }
 
       it { expect { interactor.run }.to change(ProjectMembership, :count).by(1) }
     end
 
-    context 'when params are invalid' do #когда не передано имя
+    context "when params are invalid" do # когда не передано имя
       let(:project) { create :project }
       let(:user) { nil }
 

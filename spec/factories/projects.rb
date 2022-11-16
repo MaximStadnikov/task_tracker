@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :project do
-    name { 'MyText' }
+    name { "MyText" }
     description { "Test" }
   end
 end

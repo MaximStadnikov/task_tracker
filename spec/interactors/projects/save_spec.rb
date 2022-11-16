@@ -1,24 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Projects::Save do
-  describe '#call' do
+  describe "#call" do
     let(:interactor) { described_class.new(project_params: params) }
 
-    context 'when params are valid' do
+    context "when params are valid" do
       let(:params) do
         {
-          name: 'test name',
-          description: 'test description'
+          name: "test name",
+          description: "test description"
         }
       end
 
       it { expect { interactor.run }.to change(Project, :count).by(1) }
     end
 
-    context 'when params are invalid' do #когда не передано имя
+    context "when params are invalid" do # когда не передано имя
       let(:params) do
         {
-          description: 'test description'
+          description: "test description"
         }
       end
 
