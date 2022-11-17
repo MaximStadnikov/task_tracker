@@ -1,9 +1,4 @@
 class CommentPolicy < ApplicationPolicy
-  authorize :user
-
-  def new?
-    create?
-  end
 
   def create?
     member?

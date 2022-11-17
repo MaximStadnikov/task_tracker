@@ -4,9 +4,6 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
   before_action -> { authorize! @task }
 
-  def new
-  end
-
   def create
     @comment = Comment.new(comment_params.merge(user: current_user, task: @task))
 

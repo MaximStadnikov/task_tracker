@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tasks do
-      resources :comments, only: %i[new create edit update destroy]
+      resources :comments, only: %i[create edit update destroy]
     end
   end
 
