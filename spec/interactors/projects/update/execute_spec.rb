@@ -9,12 +9,12 @@ describe Projects::Update::Execute do
       let(:project_params) do
         {
           name: "new name",
-          description: "new description" 
+          description: "new description"
         }
       end
 
-      it "changes name attribute" do 
-        expect { interactor.run }.to change(project, :name).to("new name") 
+      it "changes name attribute" do
+        expect { interactor.run }.to change(project, :name).to("new name")
       end
 
       it "changes description attribute" do
@@ -23,18 +23,18 @@ describe Projects::Update::Execute do
     end
 
     context "when the project is not updated" do
-        let!(:project) { create(:project) }
-        let(:project_params) { {error:"invalid params"} }
-        let(:error_expected) { "Invalid Data" }
+      let!(:project) { create(:project) }
+      let(:project_params) { { error: "invalid params" } }
+      let(:error_expected) { "Invalid Data" }
 
-        before do
-          allow(project).to receive(:update).and_return(false)
-        end
+      before do
+        allow(project).to receive(:update).and_return(false)
+      end
 
-        it "throws error" do
-            interactor.run
-            expect(interactor.context.error).to eq(error_expected) 
-        end
+      it "throws error" do
+        interactor.run
+        expect(interactor.context.error).to eq(error_expected)
+      end
     end
   end
 end

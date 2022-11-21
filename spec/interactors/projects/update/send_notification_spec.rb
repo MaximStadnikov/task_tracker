@@ -5,10 +5,10 @@ describe Projects::Update::SendNotification do
 
   describe ".call" do
     let(:interactor) { described_class.new(project: project) }
-    
+
     context "with correct params" do
       let(:project) { create(:project) }
-      
+
       before do
         allow(ProjectMailer).to receive(:project_updated).and_call_original
       end
@@ -20,7 +20,7 @@ describe Projects::Update::SendNotification do
       it "sends email" do
         expect(ProjectMailer).to receive(:project_updated)
         expect { interactor.run }.to change(enqueued_jobs, :size).by(1)
-      end 
+      end
     end
   end
 end
