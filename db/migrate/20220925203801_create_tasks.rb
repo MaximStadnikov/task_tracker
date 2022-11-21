@@ -1,6 +1,7 @@
 class CreateTasks < ActiveRecord::Migration[6.1]
   def change
-    create_table :tasks do |t|
+    drop_table :tasks
+    create_table :tasks, if_not_exists: true do |t|
       t.string :title
       t.text :description
       t.datetime :deadline_at

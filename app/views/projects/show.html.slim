@@ -1,0 +1,15 @@
+h1
+  | Project
+p
+  strong
+    | Name:
+  = @project.name
+p
+  strong
+    | Description:
+  = @project.description
+= link_to 'Tasks', project_tasks_path(@project)
+|  | 
+= link_to 'Edit', edit_project_path(@project)
+|  | 
+= link_to 'Projects', projects_path
