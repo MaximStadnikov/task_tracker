@@ -24,10 +24,17 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+
   end
 
   # GET /projects/1/edit
   def edit
+    respond_to do |format|
+      format.html { render :edit }
+      format.json do
+        render json: { project: @project }
+      end
+    end
   end
 
   # POST /projects
@@ -72,6 +79,7 @@ class ProjectsController < ApplicationController
   def update_project
     @update_project ||=
       Projects::Update.call(project_params: project_params, project: @project)
+    
   end
 
   def destroy_project
