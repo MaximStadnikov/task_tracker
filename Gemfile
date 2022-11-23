@@ -6,6 +6,7 @@ ruby "3.0.4"
 gem "action_policy"
 gem "bcrypt", "~> 3.1.7"
 gem "enumerize"
+gem "graphql"
 gem "interactor"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -24,6 +25,9 @@ gem "pry", "~> 0.13.1"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "rspec-rails", "~> 6.0.0"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
@@ -39,4 +43,5 @@ group :development do
   gem "web-console", ">= 4.1.0"
 end
 
+gem "graphiql-rails", group: :development
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
