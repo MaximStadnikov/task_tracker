@@ -36,8 +36,6 @@ class TasksController < ApplicationController
       format.html { render :show }
       format.json do
         render json: { task: @task, comments: @comments }
-
-
       end
     end
   end

@@ -24,7 +24,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-
   end
 
   # GET /projects/1/edit
@@ -38,14 +37,20 @@ class ProjectsController < ApplicationController
   end
 
   # POST /projects
-  def create
+  def create # rubocop:disable Metrics/MethodLength
     @project = create_project.project
-
-    if create_project.success?
-      redirect_to @project, notice: "Project was successfully created."
-    else
-      flash.now[:alert] = "Something went wrong. Try again."
-      render :new
+    respond_to do |format|
+      if create_project.success?
+        format.html { redirect_to @project, notice: "Project was successfully created." }
+        format.json do
+          render json: { project: @project, errors: @project.errors }
+        end
+      else
+        format.html { render :new, notice: "Something went wrong. Try again" }
+        format.json do
+          render json: { project: {}, errors: @project.errors }
+        end
+      end
     end
   end
 
@@ -79,7 +84,6 @@ class ProjectsController < ApplicationController
   def update_project
     @update_project ||=
       Projects::Update.call(project_params: project_params, project: @project)
-    
   end
 
   def destroy_project
