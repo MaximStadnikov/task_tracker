@@ -1,7 +1,12 @@
 require("rails_helper")
 
-describe Projects::Update::Execute do
-  let(:interactor) { described_class.new(project: project, project_params: project_params) }
+describe Projects::Update::Execute do # rubocop:disable Metrics/MethodLength
+  let(:interactor) do
+    described_class.new(
+      project: project,
+      project_params: project_params
+    )
+  end
 
   describe ".call" do
     context "when the project is updated" do
