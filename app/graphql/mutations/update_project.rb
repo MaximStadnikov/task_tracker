@@ -8,11 +8,11 @@ module Mutations
     def resolve(input:)
       project = Project.find(input.id)
       result = Projects::Update.call(project_params: input.to_h.except(:id), project: project)
-        if result.success?
-          result.to_h
-        else
-          result.to_h.merge(errors: formatted_errors(result.project))
-        end
+      if result.success?
+        result.to_h
+      else
+        result.to_h.merge(errors: formatted_errors(result.project))
+      end
     end
   end
 end
