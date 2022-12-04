@@ -28,8 +28,5 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
-Style/RaiseArgs:
-  EnforcedStyle: compact
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes

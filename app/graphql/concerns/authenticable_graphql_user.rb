@@ -6,6 +6,6 @@ module AuthenticableGraphqlUser
   def ready?(*)
     return true if current_user
 
-    raise GraphQL::ExecutionError.new("Invalid credentials")
+    raise GraphQL::ExecutionError, "Invalid credentials"
   end
 end
