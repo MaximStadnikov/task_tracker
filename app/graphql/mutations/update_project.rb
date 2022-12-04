@@ -1,7 +1,5 @@
 module Mutations
   class UpdateProject < BaseMutation
-    include GraphqlErrors
-
     argument :input, Types::Inputs::UpdateProjectInput
 
     type Types::Payloads::UpdateProjectPayload
