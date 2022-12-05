@@ -7,7 +7,7 @@ module Users
     def call
       context.fail!(errors: errors) unless user_authenticated?
 
-      context.access_token = ::JWT.encode(payload, jwt_secret, "HS256")
+      context.access_token = access_token
     end
 
     private

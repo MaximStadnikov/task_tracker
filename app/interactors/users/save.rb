@@ -8,8 +8,6 @@ module Users
       context.user = user
 
       context.fail!(errors: errors) unless user.update(user_params)
-
-      context.user = user.reload
     end
 
     private
