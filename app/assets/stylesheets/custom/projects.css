@@ -1,0 +1,9 @@
+.projects-layout {
+  margin-top: 1rem;
+}
+.projects-layout__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}/*# sourceMappingURL=projects.css.map */
