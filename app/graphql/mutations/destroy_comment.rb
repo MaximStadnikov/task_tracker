@@ -8,7 +8,7 @@ module Mutations
 
     def resolve(input:)
       comment = Comment.find(input.id)
-      result = Comments::Destroy.call(comment: comment, project_params: input.to_h, user: current_user)
+      result = Comments::Destroy.call(comment: comment)
 
       if result.success?
         result.to_h
