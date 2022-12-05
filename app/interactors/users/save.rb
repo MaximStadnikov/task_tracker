@@ -7,17 +7,13 @@ module Users
     def call
       context.user = user
 
-      context.fail!(errors: errors) unless user.update(user_params)
+      context.fail! unless user.update(user_params)
     end
 
     private
 
     def user
       @user ||= context.user || User.new
-    end
-
-    def errors
-      [{ message: "Wrong email or password" }]
     end
   end
 end
