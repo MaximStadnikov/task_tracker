@@ -1,5 +1,7 @@
 module Mutations
   class CreateTask < BaseMutation
+    include GraphqlErrors
+
     argument :input, Types::Inputs::CreateTaskInput, required: true
 
     type Types::Payloads::CreateTaskPayload
@@ -11,7 +13,7 @@ module Mutations
       if result.success?
         result.to_h.merge({ errors: [] })
       else
-        result.to_h.merge({ errors: prepared_params(result.project) })
+        result.to_h.merge({ errors: formatted_errors(resolve.task) })
       end
     end
   end
