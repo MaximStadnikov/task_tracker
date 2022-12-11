@@ -11,14 +11,16 @@ describe Projects::Destroy::Execute do
     end
 
     context "NE NORM" do
+      let(:expected_error_message) { "Invalid Data" }
       let(:project) { create :project }
 
-      let(:expected_error_message) { "Invalid Data" }
+      before do
+        allow(project).to receive(:destroy).and_return(false)
+      end
 
-      it "fail" do
-        expect(Project.exists?(project.id)).to be false
-
+      it "passes error to context" do
         interactor.run
+
         expect(interactor.context.error).to eq(expected_error_message)
       end
     end
