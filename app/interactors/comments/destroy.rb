@@ -5,7 +5,7 @@ module Comments
     delegate :comment, to: :context
 
     def call
-      context.fail(error: "Invalid Data") unless comment.destroy
+      context.fail!(error: "Invalid Data") unless comment.destroy
     end
   end
 end
