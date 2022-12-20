@@ -1,7 +1,9 @@
 require("rails_helper")
 
 describe Users::Authenticate do
-  let(:interactor) { described_class.new(credentials: credentials) }
+  let(:interactor) do
+    described_class.new(credentials: credentials)
+  end
 
   context "valid credentials" do
     let!(:user) { create :user }

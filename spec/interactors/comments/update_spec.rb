@@ -1,7 +1,9 @@
 require("rails_helper")
 
 describe Comments::Update do
-  let(:interactor) { described_class.new(comment: comment, comment_params: comment_params) }
+  let(:interactor) do
+    described_class.new(comment: comment, comment_params: comment_params)
+  end
 
   context "valid params" do
     let!(:comment) { create :comment }
