@@ -3,7 +3,9 @@ class TasksController < ApplicationController
   before_action :set_project, only: %i[new index create destroy]
 
   def index
-    @tasks = @project.tasks
+    @tasks = @project.tasks.order(params[:sort])
+                     .page(params[:page])
+                     .per(5)
   end
 
   def new
