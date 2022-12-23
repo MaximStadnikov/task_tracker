@@ -8,6 +8,7 @@ module Users
       context.fail!(errors: errors) unless user_authenticated?
 
       context.access_token = access_token
+      context.user = user
     end
 
     private

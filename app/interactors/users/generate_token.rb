@@ -5,9 +5,9 @@ module Users
     delegate :user, to: context
 
     def call
-        context.fail!(error: "user empty") unless user.present?
-        
-        context.access_token = access_token
+      context.fail!(error: "user empty") unless user.present?
+
+      context.access_token = access_token
     end
 
     def access_token
@@ -19,10 +19,9 @@ module Users
     end
 
     def payload
-        {
-          sub: user.id
-        }
+      {
+        sub: user.id
+      }
     end
-
   end
 end

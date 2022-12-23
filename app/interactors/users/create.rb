@@ -4,6 +4,5 @@ module Users
 
     organize Users::Save,
              Users::GenerateToken
-
   end
 end
