@@ -5,6 +5,8 @@ class Task < ApplicationRecord
   validates :deadline_at, presence: true
   validate :deadline_possibility
 
+  has_many :comments, dependent: :destroy
+
   private
 
   def deadline_possibility

@@ -1,17 +1,21 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
-  before_action :set_project, only: %i[new index create destroy]
+  before_action :set_task, only: %i[show edit update destroy show]
+  before_action :set_project, only: %i[new index create destroy show]
+  before_action ->{authorize! Task}, only: %i[index]
+  before_action ->{authorize! @task}, only: %i[show destroy edit update]
 
   def index
     @tasks = @project.tasks
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(project: @project)
+    authorize! @task   
   end
 
   def create
     @task = Task.new(task_params)
+    authorize! @task
     @task.deadline_at = 7.days.after
 
     if @task.save
@@ -28,6 +32,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = Comment.all
   end
 
   def edit

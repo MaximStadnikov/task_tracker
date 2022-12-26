@@ -25,3 +25,28 @@
 
 <%= link_to 'Edit', edit_project_task_path(@task.project, @task) %> |
 <%= link_to 'Back', project_tasks_path(@task.project) %>
+
+<%= form_with model: [@project, @task, @comment] do |f| %>
+  
+  <div>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  
+  <div>
+      <%= f.submit %>
+  </div>
+  
+<% end %>
+
+<br>
+
+<% @comments.each do |comment| %>
+
+  <div>
+      <h3><%= comment.user.first_name %></h3>
+      <%= comment.content %>
+      <hr>
+  </div>
+
+<% end %>

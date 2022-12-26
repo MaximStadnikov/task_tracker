@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action ->{authorize! User}, only: %i[new create]
+
   def new
     @user = User.new
   end
