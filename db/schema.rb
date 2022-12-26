@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 2022_11_16_101133) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "deadline_at"
     t.bigint "project_id", null: false
+    t.string "name"
+    t.string "title"
+    t.string "description"
+    t.datetime "deadline_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "state", default: "not_started", null: false
