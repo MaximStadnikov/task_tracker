@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_action :authenticate_current_user!, only: %i[show]
-  before_action ->{authorize! User, with: UserPolicy}, only: %i[new create]
-  
+  before_action -> { authorize! User, with: UserPolicy }, only: %i[new create]
+
   def show
   end
 

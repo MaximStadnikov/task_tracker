@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-  before_action ->{authorize! User}, only: %i[new create]
+  before_action -> { authorize! User }, only: %i[new create]
 
   def new
     @user = User.new

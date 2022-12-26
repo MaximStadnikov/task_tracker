@@ -46,7 +46,14 @@
   <div>
       <h3><%= comment.user.first_name %></h3>
       <%= comment.content %>
-      <hr>
+   
   </div>
+
+  <div>
+      <%= link_to "Edit", edit_project_task_comment_path(@project, @task, comment) %>
+      <%= link_to "destroy", project_task_comment_path(@project, @task, comment), method: :delete %>
+  </div>
+
+     <hr>
 
 <% end %>
