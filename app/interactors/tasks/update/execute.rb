@@ -1,14 +1,13 @@
 module Tasks
   class Update
     class Execute
-        include Interactor
+      include Interactor
 
-        delegate :task, :task_params, to: :context
+      delegate :task, :task_params, to: :context
 
-        def call
-            context.fail!(error: "Invalid Data") unless task.update(task_params)
-        end
-
+      def call
+        context.fail!(error: "Invalid Data") unless task.update(task_params)
+      end
     end
   end
 end

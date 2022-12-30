@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
   end
 
   def update_comment
-    @update_comment ||= Comments::Update.call(comment_params: comment_params, comment: @comment) 
+    @update_comment ||= Comments::Update.call(comment_params: comment_params, comment: @comment)
   end
 
   def destroy_comment

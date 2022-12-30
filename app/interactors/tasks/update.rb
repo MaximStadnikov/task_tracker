@@ -3,6 +3,5 @@ module Tasks
     include Interactor::Organizer
 
     organize Tasks::Update::Execute
-
   end
 end

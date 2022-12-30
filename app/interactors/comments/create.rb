@@ -1,7 +1,7 @@
 module Comments
-    class Create
-      include Interactor::Organizer
+  class Create
+    include Interactor::Organizer
 
-      organize Comments::Save
-    end
+    organize Comments::Save
+  end
 end

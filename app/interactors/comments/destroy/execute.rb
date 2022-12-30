@@ -1,14 +1,13 @@
 module Comments
-    class Destroy
-        class Execute
-            include Interactor
-            
-            delegate :comment, to: :context
+  class Destroy
+    class Execute
+      include Interactor
 
-            def call
-                content.fail!(error: "Invalid data") unless comment.destroy
-            end
+      delegate :comment, to: :context
 
-        end
+      def call
+        content.fail!(error: "Invalid data") unless comment.destroy
+      end
     end
+  end
 end

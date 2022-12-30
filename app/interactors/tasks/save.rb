@@ -13,8 +13,7 @@ module Tasks
     private
 
     def task
-        @task ||= Task.new(task_params)
+      @task ||= Task.new(task_params)
     end
-
   end
 end

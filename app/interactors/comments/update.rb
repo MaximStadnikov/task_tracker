@@ -1,8 +1,7 @@
 module Comments
-    class Update
-        include Interactor::Organizer
+  class Update
+    include Interactor::Organizer
 
-        organize Comments::Update::Execute
-        
-    end
+    organize Comments::Update::Execute
+  end
 end
