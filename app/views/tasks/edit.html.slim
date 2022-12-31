@@ -1,0 +1,7 @@
+= link_to "Project", @project
+
+h1 Editing Task
+
+= render 'form', task: @task, project: @project
+
+= link_to 'Back', project_tasks_path(@project)

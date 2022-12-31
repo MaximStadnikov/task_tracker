@@ -1,0 +1,14 @@
+h1 Comments
+
+table
+    tbody
+    - comments.each do |comment|
+        tr
+            td style="font-weight: bolder"
+                | User#<%= comment.user_id
+        tr
+            td = comment.content
+            td = comment.created_at
+            td = link_to 'Edit', edit_project_task_comment_path(comment.task.project, comment.task, comment)
+            td = link_to 'Destroy', project_task_comment_path(comment.task.project, comment.task, comment), method: :delete, data: { confirm: 'Are you sure?' }
+        
