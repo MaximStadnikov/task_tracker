@@ -19,7 +19,8 @@ module Tasks
       end
 
       def initiator_is_owner?
-        ProjectMembership.find_by(project: project, user: user).owner?
+        project_membership = ProjectMembership.find_by(project: project, user: user)
+        project_membership.present? ? project_membership.owner? : false
       end
     end
   end
