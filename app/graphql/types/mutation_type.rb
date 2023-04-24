@@ -3,7 +3,7 @@ module Types
     field :sign_up, mutation: Mutations::SignUp
     field :sign_in, mutation: Mutations::SignIn
 
-    field :create_project, mutation: Mutations::CreateProject  
+    field :create_project, mutation: Mutations::CreateProject
     field :update_project, mutation: Mutations::UpdateProject
     field :destroy_project, mutation: Mutations::DestroyProject
 
@@ -13,6 +13,7 @@ module Types
 
     field :create_comment, mutation: Mutations::CreateComment
     field :update_comment, mutation: Mutations::UpdateComment
+    field :destroy_comment, mutation: Mutations::DestroyComment
 
     field :update_user, mutation: Mutations::UpdateUser
     field :destroy_user, mutation: Mutations::DestroyUser
